@@ -32,22 +32,38 @@ public class AuhController {
 
     private static final String VIEWS_CREATE_OR_UPDATE_FORM = "backoffice/auth/profile";
 
+    /**
+     *
+     * @return
+     */
     @GetMapping(value = {"/login"})
     public ModelAndView login() {
         return new ModelAndView("backoffice/auth/login");
     }
 
+    /**
+     *
+     * @return
+     */
     @GetMapping(value = {"/logout"})
     public String logout() {
         SecurityContextHolder.getContext().setAuthentication(null);
         return "redirect:login";
     }
 
+    /**
+     *
+     * @return
+     */
     @GetMapping(value = "/")
     public String home() {
         return "redirect:dashboard";
     }
 
+    /**
+     *
+     * @return
+     */
     @GetMapping(value = "/profile")
     public ModelAndView getUserProfile() {
         ModelAndView modelAndView = new ModelAndView(VIEWS_CREATE_OR_UPDATE_FORM);
@@ -67,6 +83,14 @@ public class AuhController {
         return modelAndView;
     }
 
+    /**
+     *
+     * @param profileFormRequest
+     * @param bindingResult
+     * @param redirectAttributes
+     * @param model
+     * @return
+     */
     @PostMapping(value = "/profile")
     public String agencyUpdate(@Valid @ModelAttribute("userFormData") ProfileFormRequest profileFormRequest,
                                BindingResult bindingResult,

@@ -12,14 +12,30 @@ import java.util.Map;
 
 public interface LibraryRepository extends JpaRepository<Library, Long>, JpaSpecificationExecutor<Library> {
 
+    /**
+     *
+     * @param pageable
+     * @return
+     */
     Page<Library> findAll(Pageable pageable);
+
+    /**
+     *
+     * @param pageable
+     * @return
+     */
     Page<Library> findAllByOrderByTitleAsc(Pageable pageable);
 
-//    @Query(value="SELECT * FROM library ORDER BY RAND() LIMIT 15", nativeQuery=true)
-//    Library fetchRandomHome();
-
+    /**
+     *
+     * @return
+     */
     @Query(value="SELECT MIN(YEAR(PUBLICATION_DATE)) as min,MAX(YEAR(PUBLICATION_DATE)) as max  FROM LIBRARY", nativeQuery=true)
     Map<String, Integer> getRangeYear();
 
+    /**
+     * 
+     * @return
+     */
     ArrayList<Library> findTop10ByOrderByIdAsc();
 }

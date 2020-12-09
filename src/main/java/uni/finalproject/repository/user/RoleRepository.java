@@ -6,5 +6,10 @@ import uni.finalproject.models.user.UserRoles;
 
 public interface RoleRepository extends CrudRepository<Role, Long> {
 
+    /**
+     *
+     * @param role
+     * @return
+     */
     Role findByRole(UserRoles role);
 }

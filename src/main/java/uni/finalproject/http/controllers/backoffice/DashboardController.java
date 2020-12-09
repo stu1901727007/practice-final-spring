@@ -24,6 +24,10 @@ public class DashboardController {
         return "redirect:dashboard";
     }
 
+    /**
+     *
+     * @return
+     */
     @GetMapping(value = "/dashboard")
     public ModelAndView dashboard() {
 

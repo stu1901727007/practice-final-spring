@@ -10,6 +10,11 @@ import java.util.List;
 
 public class LibrarySpecification {
 
+    /**
+     *
+     * @param q
+     * @return
+     */
     public static Specification<Library> withTitle(String q) {
         if (q == null) {
             return null;
@@ -19,6 +24,11 @@ public class LibrarySpecification {
         }
     }
 
+    /**
+     *
+     * @param q
+     * @return
+     */
     public static Specification<Library> withText(String q) {
         if (q == null) {
             return null;
@@ -28,6 +38,11 @@ public class LibrarySpecification {
         }
     }
 
+    /**
+     *
+     * @param agency
+     * @return
+     */
     public static Specification<Library> withАgency(int agency) {
         if (agency <= 0) {
             return null;
@@ -37,6 +52,11 @@ public class LibrarySpecification {
         }
     }
 
+    /**
+     *
+     * @param media_type
+     * @return
+     */
     public static Specification<Library> withType(String media_type) {
 
         if (media_type == null) {
@@ -48,6 +68,12 @@ public class LibrarySpecification {
         }
     }
 
+    /**
+     *
+     * @param year_start
+     * @param year_end
+     * @return
+     */
     public static Specification<Library> withYear(int year_start, int year_end) {
         if (year_start <= 0 || year_end <= 0) {
             return null;

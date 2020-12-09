@@ -14,6 +14,11 @@ public class IndexController {
     @Autowired
     private LibraryRepository libraryRepo;
 
+    /**
+     *
+     * @param model
+     * @return
+     */
     @GetMapping("/")
     public String home(Map<String, Object> model) {
 

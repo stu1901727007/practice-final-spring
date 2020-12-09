@@ -8,6 +8,17 @@ import uni.finalproject.models.image.Agency;
 
 public interface AgencyRepository extends JpaRepository<Agency, Long> {
 
+    /**
+     *
+     * @param pageable
+     * @return
+     */
     Page<Agency> findAll(Pageable pageable);
+
+    /**
+     *
+     * @param pageable
+     * @return
+     */
     Page<Agency> findAllByOrderByNameAsc(Pageable pageable);
 }

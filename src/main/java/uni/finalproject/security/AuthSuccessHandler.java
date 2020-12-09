@@ -12,6 +12,15 @@ import java.io.IOException;
 
 @Component
 public class AuthSuccessHandler implements AuthenticationSuccessHandler {
+
+    /**
+     *
+     * @param request
+     * @param response
+     * @param authentication
+     * @throws IOException
+     * @throws ServletException
+     */
     @Override
     public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response, Authentication authentication) throws IOException, ServletException {
         response.setStatus(HttpServletResponse.SC_OK);

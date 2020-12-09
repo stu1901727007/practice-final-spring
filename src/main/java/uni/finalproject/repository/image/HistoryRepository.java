@@ -8,5 +8,10 @@ import uni.finalproject.models.image.History;
 
 public interface HistoryRepository extends JpaRepository<History, Long>, JpaSpecificationExecutor<History> {
 
+    /**
+     *
+     * @param pageable
+     * @return
+     */
     Page<History> findAllByOrderByIdDesc(Pageable pageable);
 }

@@ -6,6 +6,10 @@ import java.util.Date;
 
 public class DateUtils {
 
+    /**
+     *
+     * @return
+     */
     public static Date today() {
         return new Date();
     }
