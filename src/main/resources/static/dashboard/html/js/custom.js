@@ -28,7 +28,8 @@ $(document).ready(function () {
             showCancelButton: true,
             confirmButtonColor: "#d33",
             cancelButtonColor: "#3085d6",
-            confirmButtonText: "Да, изтрий!"
+            confirmButtonText: "Да, изтрий!",
+            cancelButtonText: "Не"
         }).then(function (result) {
 
             if (result.value) {
@@ -36,6 +37,49 @@ $(document).ready(function () {
                 that.closest('form').find('input[name="_method"]').val('DELETE')
 
                 buttonSubmit.trigger('click');
+            }
+
+            Swal.close();
+        });
+
+    });
+
+
+    $(document).on('click', '.btn-remove-image', function (e) {
+
+        e.preventDefault();
+
+        var that = $(this);
+
+        Swal.fire({
+            title: "Изтриване на изображение",
+            text: "Сигурни ли сте, че искате да изтриете това изображение?",
+            type: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#d33",
+            cancelButtonColor: "#3085d6",
+            confirmButtonText: "Да, изтрий!",
+            cancelButtonText: "Не"
+        }).then(function (result) {
+
+            if (result.value) {
+
+                enpoint = '/bo/library/' + $('#libraryId').val() + '/image';
+
+                $.ajax({
+                    url: enpoint,
+                    dataType: 'json',
+                    method: 'DELETE'
+                }).done(function (result) {
+
+                    if( result.status )
+                    {
+                        $('.image-preview').fadeOut();
+                    }
+                }).fail(function () {
+                    window.location.reload();
+                });
+
             }
 
             Swal.close();

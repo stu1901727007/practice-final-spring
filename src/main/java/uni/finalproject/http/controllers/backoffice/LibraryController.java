@@ -1,7 +1,11 @@
 package uni.finalproject.http.controllers.backoffice;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.WebDataBinder;
@@ -50,6 +54,11 @@ public class LibraryController {
         dataBinder.setDisallowedFields("id");
     }
 
+    /**
+     *
+     * @param request
+     * @return
+     */
     @GetMapping(value = "/library")
     public ModelAndView libraryList(HttpServletRequest request) {
 
@@ -69,6 +78,10 @@ public class LibraryController {
         return modelAndView;
     }
 
+    /**
+     *
+     * @return
+     */
     @GetMapping(value = "/library/create")
     public ModelAndView libraryCreate() {
         ModelAndView modelAndView = new ModelAndView(VIEWS_CREATE_OR_UPDATE_FORM);
@@ -81,6 +94,15 @@ public class LibraryController {
         return modelAndView;
     }
 
+    /**
+     *
+     * @param libraryFormRequest
+     * @param bindingResult
+     * @param redirectAttributes
+     * @param model
+     * @param multipartFile
+     * @return
+     */
     @PostMapping(value = "/library/create")
     public String libraryStore(@Valid @ModelAttribute("libraryFormData") LibraryFormRequest libraryFormRequest,
                                BindingResult bindingResult,
@@ -110,6 +132,12 @@ public class LibraryController {
         }
     }
 
+    /**
+     *
+     * @param libraryid
+     * @param model
+     * @return
+     */
     @GetMapping(value = "/library/{libraryid}/edit")
     public String libraryEdit(@PathVariable("libraryid") Long libraryid, Map<String, Object> model) {
 
@@ -145,6 +173,16 @@ public class LibraryController {
         return null;
     }
 
+    /**
+     *
+     * @param libraryFormRequest
+     * @param bindingResult
+     * @param redirectAttributes
+     * @param libraryid
+     * @param model
+     * @param multipartFile
+     * @return
+     */
     @PostMapping(value = "/library/{libraryid}/edit")
     public String libraryUpdate(@Valid @ModelAttribute("libraryFormData") LibraryFormRequest libraryFormRequest,
                                 BindingResult bindingResult,
@@ -172,9 +210,18 @@ public class LibraryController {
         redirectAttributes.addFlashAttribute("alertClass", "alert-danger");
 
         model.put("libraryFormData", libraryFormRequest);
+        model.put("hashTypes", TYPES);
+        model.put("agencies", agencyRepo.findAll());
+
         return VIEWS_CREATE_OR_UPDATE_FORM;
     }
 
+    /**
+     *
+     * @param libraryid
+     * @param redirectAttributes
+     * @return
+     */
     @DeleteMapping(value = "/library/{libraryid}/edit")
     public String libraryUpdate(@PathVariable("libraryid") Long libraryid, RedirectAttributes redirectAttributes) {
 
@@ -198,8 +245,28 @@ public class LibraryController {
         return "redirect:/bo/library";
     }
 
-    private Library getLibrary(User user) {
+    /**
+     *
+     * @param libraryid
+     * @return
+     */
+    @DeleteMapping(value = "/library/{libraryid}/image")
+    public ResponseEntity<Map<String, Object>> removeImage(@PathVariable("libraryid") Long libraryid) {
 
-        return new Library();
+        Map<String, Object> response = new HashMap<>();
+        Optional<Library> library = libraryRepo.findById(libraryid);
+        if (library.isPresent()) {
+
+            Library rsLibrary = library.get();
+            libraryService.removeImage(rsLibrary);
+
+            response.put("status", true);
+            return new ResponseEntity<>(response, HttpStatus.OK);
+        }
+        else
+        {
+            response.put("status", false);
+            return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
+        }
     }
 }

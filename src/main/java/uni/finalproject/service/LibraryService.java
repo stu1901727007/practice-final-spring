@@ -9,4 +9,5 @@ public interface LibraryService {
     Library updateLibrary(LibraryFormRequest libraryFormRequest, MultipartFile multipartFile, Library library);
     Library createLibrary(LibraryFormRequest libraryFormRequest, MultipartFile multipartFile);
     Boolean deleteLibrary(Library library);
+    Boolean removeImage(Library library);
 }

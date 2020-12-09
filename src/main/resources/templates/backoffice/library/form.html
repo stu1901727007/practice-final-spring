@@ -110,8 +110,10 @@
                             <label for="libraryText" class="col-md-12">Изображение</label>
                             <div class="col-md-12">
                                 <input type="file" class="mt-2" name="image" accept="image/png, image/jpeg"/>
-
-                                <img class="img-thumbnail mt-2" th:src="*{photosImagePath}" />
+                                <div class="image-preview" th:if="*{libraryFile}">
+                                    <img class="img-thumbnail mt-2" th:src="*{photosImagePath}" />
+                                    <a src="#" class="btn btn-danger btn-xs text-white btn-remove-image">Премахни</a>
+                                </div>
                             </div>
                         </div>
 

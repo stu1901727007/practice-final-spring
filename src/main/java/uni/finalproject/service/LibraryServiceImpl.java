@@ -26,6 +26,15 @@ public class LibraryServiceImpl implements LibraryService {
     @Autowired
     private LibraryRepository libraryRepository;
 
+    @Override
+    public Boolean removeImage(Library library) {
+
+        library.setFile(null);
+
+        libraryRepository.save(library);
+        return true;
+    }
+
     /**
      * @param libraryFormRequest
      * @param multipartFile
@@ -113,7 +122,7 @@ public class LibraryServiceImpl implements LibraryService {
 
         if (!fileName.isEmpty()) {
             library.setFile(fileName);
-            this.libraryRepository.save(library);
+            libraryRepository.save(library);
 
             String uploadDir = "uploads/media/" + library.getId();
 
