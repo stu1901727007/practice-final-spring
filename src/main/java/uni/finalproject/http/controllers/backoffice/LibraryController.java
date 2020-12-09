@@ -188,7 +188,6 @@ public class LibraryController {
 
             redirectAttributes.addFlashAttribute("message", "Успешно изтрихте " + rsLibrary.getTitle() +"!");
             redirectAttributes.addFlashAttribute("alertClass", "alert-success");
-
         }
         else
         {

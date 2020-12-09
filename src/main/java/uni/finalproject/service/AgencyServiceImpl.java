@@ -24,6 +24,11 @@ public class AgencyServiceImpl implements AgencyService {
     @Autowired
     private AgencyRepository agencyRepository;
 
+    /**
+     *
+     * @param agencyFormRequest
+     * @return
+     */
     public Agency createAgency(AgencyFormRequest agencyFormRequest) {
 
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
@@ -38,6 +43,12 @@ public class AgencyServiceImpl implements AgencyService {
         return _updateRecord(agencyFormRequest, agency);
     }
 
+    /**
+     *
+     * @param agencyFormRequest
+     * @param agency
+     * @return
+     */
     public Agency updateAgency(AgencyFormRequest agencyFormRequest, Agency agency) {
 
         agencyFormRequest.setAgencyDeleted(false);
@@ -45,6 +56,12 @@ public class AgencyServiceImpl implements AgencyService {
         return _updateRecord(agencyFormRequest, agency);
     }
 
+    /**
+     *
+     * @param agencyFormRequest
+     * @param agency
+     * @return
+     */
     private Agency _updateRecord(AgencyFormRequest agencyFormRequest, Agency agency) {
 
         agency.setCode(agencyFormRequest.getAgencyCode().toUpperCase())
@@ -58,6 +75,11 @@ public class AgencyServiceImpl implements AgencyService {
         return agency;
     }
 
+    /**
+     *
+     * @param agency
+     * @return
+     */
     public Boolean deleteLibrary(Agency agency) {
 
         agency.setDeleted(true);

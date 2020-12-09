@@ -9,7 +9,6 @@ import lombok.experimental.Accessors;
 import javax.persistence.*;
 import java.util.Collection;
 
-
 @ToString
 @Getter
 @Setter

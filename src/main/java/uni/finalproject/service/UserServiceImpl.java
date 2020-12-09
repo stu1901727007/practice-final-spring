@@ -22,6 +22,11 @@ public class UserServiceImpl implements UserService {
     @Autowired
     private UserRepository userRepository;
 
+    /**
+     *
+     * @param email
+     * @return
+     */
     @Transactional
     public User findUserByEmail(String email) {
         Optional<User> user = Optional.ofNullable(userRepository.findByEmail(email));
@@ -31,6 +36,12 @@ public class UserServiceImpl implements UserService {
         throw new RuntimeException("Error");
     }
 
+    /**
+     *
+     * @param user
+     * @param profileFormRequest
+     * @return
+     */
     @Override
     public User updateProfile(User user, ProfileFormRequest profileFormRequest) {
         Optional<User> rsUser = Optional.ofNullable(userRepository.findByEmail(user.getEmail()));
@@ -52,15 +63,4 @@ public class UserServiceImpl implements UserService {
         }
         throw new RuntimeException("Error");
     }
-//
-//    @Override
-//    public User changePassword(User user, String newPassword) {
-//        Optional<User> user = Optional.ofNullable(userRepository.findByEmail(user.getEmail()));
-//        if (user.isPresent()) {
-//            User userModel = user.get();
-//            userModel.setPassword(bCryptPasswordEncoder.encode(newPassword));
-//            return UserMapper.toUser(userRepository.save(userModel));
-//        }
-//        throw new RuntimeException("Error");
-//    }
 }

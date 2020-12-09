@@ -24,6 +24,15 @@ public class HistoryServiceImpl implements HistoryService {
     @Autowired
     private HistoryRepository historyRepository;
 
+    /**
+     *
+     * @param q
+     * @param type
+     * @param agency
+     * @param yearStart
+     * @param yearEnd
+     * @return
+     */
     public History add(String q, String type, int agency, int yearStart, int yearEnd) {
 
         History history = new History();

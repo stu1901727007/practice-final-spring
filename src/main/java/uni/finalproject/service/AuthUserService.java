@@ -19,6 +19,12 @@ public class AuthUserService implements UserDetailsService {
     @Autowired
     private UserService userService;
 
+    /**
+     *
+     * @param email
+     * @return
+     * @throws UsernameNotFoundException
+     */
     @Override
     public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
         User user = userService.findUserByEmail(email);
@@ -30,6 +36,11 @@ public class AuthUserService implements UserDetailsService {
         }
     }
 
+    /**
+     *
+     * @param userRoles
+     * @return
+     */
     private List<GrantedAuthority> getUserAuthority(Collection<Role> userRoles) {
         Set<GrantedAuthority> roles = new HashSet<>();
         userRoles.forEach((role) -> {
@@ -38,6 +49,12 @@ public class AuthUserService implements UserDetailsService {
         return new ArrayList<GrantedAuthority>(roles);
     }
 
+    /**
+     *
+     * @param user
+     * @param authorities
+     * @return
+     */
     private UserDetails buildUserForAuthentication(User user, List<GrantedAuthority> authorities) {
         return new org.springframework.security.core.userdetails.User(user.getEmail(), user.getPassword(), authorities);
     }

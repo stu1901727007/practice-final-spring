@@ -143,10 +143,4 @@ public class AgencyController {
         model.put("agencyFormData", agencyFormRequest);
         return VIEWS_CREATE_OR_UPDATE_FORM;
     }
-
-    private Agency getAgency(User user) {
-
-        return new Agency();
-    }
-
 }

@@ -19,7 +19,6 @@ import java.util.*;
 import static org.springframework.data.jpa.domain.Specification.where;
 import static uni.finalproject.repository.specification.LibrarySpecification.*;
 
-
 @RestController
 @RequestMapping("/api/v1")
 public class ApiController {
@@ -58,13 +57,8 @@ public class ApiController {
         }
     }
 
-
     @GetMapping("/library")
     public ResponseEntity<Map<String, Object>> getAllMediaRecords(
-            @RequestParam(required = false) String title,
-            @RequestParam(required = false) Integer yearFrom,
-            @RequestParam(required = false) Integer yearTo,
-            @RequestParam(required = false) String type,
             @RequestParam(defaultValue = "0") int page,
             @RequestParam(defaultValue = "100") int size
     ) {
@@ -73,10 +67,8 @@ public class ApiController {
             Pageable paging = PageRequest.of(page, size);
 
             Page<Library> pageMedia;
-            //if (title == null)
+
             pageMedia = libraryRepository.findAllByOrderByTitleAsc(paging);
-//            else
-//                pageMedia = libraryRepository.findByTitleContaining(title, paging);
 
             Map<String, Object> response = new HashMap<>();
             response.put("media", pageMedia.getContent());
@@ -104,7 +96,6 @@ public class ApiController {
         return new Library();
     }
 
-
     @GetMapping("/library/top")
     public ResponseEntity<Map<String, Object>> showLibrary() {
 
@@ -118,7 +109,6 @@ public class ApiController {
 
         return new ResponseEntity<>(response, HttpStatus.OK);
     }
-
 
     //search?page=1&q=1&media_type=image,video,audio&center=&year_start=1920&year_end=2020
     @GetMapping("/search")

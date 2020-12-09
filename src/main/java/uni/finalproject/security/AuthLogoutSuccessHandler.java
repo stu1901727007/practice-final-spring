@@ -9,12 +9,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-
-/*
- * Copyright (c) 2020.
- * @author Vitali Atias
- */
-
 public class AuthLogoutSuccessHandler extends SimpleUrlLogoutSuccessHandler
         implements LogoutSuccessHandler {
     @Override

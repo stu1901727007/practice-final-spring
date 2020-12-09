@@ -28,14 +28,6 @@ public class DashboardController {
     public ModelAndView dashboard() {
 
         ModelAndView modelAndView = new ModelAndView("backoffice/dashboard/dashboard");
-
-//        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-//        User user = userService.findUserByEmail(auth.getName());
-
-//        modelAndView.addObject("currentUser", user);
-//        modelAndView.addObject("userName", user.getFullName());
-
-
         modelAndView.addObject("history", historyRepository.findAllByOrderByIdDesc(PageRequest.of(0, 10)));
 
         return modelAndView;

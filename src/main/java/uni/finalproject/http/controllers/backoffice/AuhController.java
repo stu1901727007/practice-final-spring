@@ -94,7 +94,4 @@ public class AuhController {
         model.put("userFormData", profileFormRequest);
         return VIEWS_CREATE_OR_UPDATE_FORM;
     }
-
-
-
 }
