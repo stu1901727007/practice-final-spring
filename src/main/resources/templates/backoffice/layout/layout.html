@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/web/thymeleaf/layout">
+
+<head th:replace="backoffice/fragments/header :: header">
+    <title>Header</title>
+</head>
+
+<body class="fix-header fix-sidebar card-no-border">
+<!-- ============================================================== -->
+<!-- Preloader - style you can find in spinners.css -->
+<!-- ============================================================== -->
+<div class="preloader">
+    <svg class="circular" viewBox="25 25 50 50">
+        <circle class="path" cx="50" cy="50" r="20" fill="none" stroke-width="2" stroke-miterlimit="10"/>
+    </svg>
+</div>
+<!-- ============================================================== -->
+<!-- Main wrapper - style you can find in pages.scss -->
+<!-- ============================================================== -->
+<div id="main-wrapper">
+    <!-- Topbar header - style you can find in pages.scss -->
+    <div th:replace="backoffice/fragments/navigation :: navigation"></div>
+    <!-- Left Sidebar - style you can find in sidebar.scss  -->
+    <div th:replace="backoffice/fragments/sidebar :: sidebar"></div>
+    <!-- Page wrapper  -->
+    <div class="page-wrapper" id="mainContent">
+        <div layout:fragment="content"></div>
+        <div th:replace="backoffice/fragments/footer :: footer"></div>
+    </div>
+</div>
+<!-- ============================================================== -->
+<!-- End Wrapper -->
+<!-- ============================================================== -->
+
+<script src="/dashboard/assets/plugins/jquery/jquery.min.js"></script>
+<script src="/dashboard/html/js/moment.js"></script>
+<script src="/dashboard/assets/plugins/bootstrap/js/tether.min.js"></script>
+<script src="/dashboard/assets/plugins/bootstrap/js/bootstrap.min.js"></script>
+<script src="/dashboard/assets/plugins/bootstrap-datepicker/bootstrap-datepicker.min.js"></script>
+<script src="/dashboard/assets/plugins/sweetalert2/sweetalert2.min.js"></script>
+<script src="/dashboard/assets/plugins/sticky-kit-master/dist/sticky-kit.min.js"></script>
+<script src="/dashboard/html/js/jquery.slimscroll.js"></script>
+<script src="/dashboard/html/js/waves.js"></script>
+<script src="/dashboard/html/js/sidebarmenu.js"></script>
+<script src="/dashboard/html/js/custom.js"></script>
+
+</body>
+
+</html>

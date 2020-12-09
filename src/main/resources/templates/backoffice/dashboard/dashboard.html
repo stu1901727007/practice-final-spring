@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorator="backoffice/layout/layout">
+<head>
+</head>
+
+<body>
+
+<!-- ============================================================== -->
+<!-- Container fluid  -->
+<!-- ============================================================== -->
+<div class="container-fluid" layout:fragment="content">
+    <!-- ============================================================== -->
+    <!-- Bread crumb and right sidebar toggle -->
+    <!-- ============================================================== -->
+    <div class="row page-titles">
+        <div class="col-md-5 col-8 align-self-center">
+            <h3 class="text-themecolor">Начална стрнаица</h3>
+
+        </div>
+    </div>
+    <!-- ============================================================== -->
+    <!-- End Bread crumb and right sidebar toggle -->
+    <!-- ============================================================== -->
+    <!-- ============================================================== -->
+    <!-- Start Page Content -->
+    <!-- ============================================================== -->
+    <!-- Row -->
+    <div class="row">
+        <!-- Column -->
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-block">
+
+                    <div class="row m-0">
+                        <div class="col-6 p-0">
+                            <h4 class="card-title">Последни 10 търсения</h4>
+                        </div>
+                    </div>
+
+                    <div class="table-responsive mt-2">
+                        <table class="table">
+                            <thead>
+                            <tr>
+                                <th>Търсене</th>
+                                <th>Типове</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <th:block th:each="row : ${history}">
+                                <tr>
+                                    <td th:text=${row.q}>
+                                    <td th:text=${row.type}>
+                                </tr>
+                            </th:block>
+                            <tr th:if="${#lists.isEmpty(history)}">
+                                <td th:colspan="2">
+                                    <div class="alert alert-info text-center">Няма записи!</div>
+                                </td>
+                            </tr>
+
+                            </tbody>
+                        </table>
+                    </div>
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Row -->
+
+    <!-- ============================================================== -->
+    <!-- End PAge Content -->
+    <!-- ============================================================== -->
+</div>
+</body>
+
+</html>

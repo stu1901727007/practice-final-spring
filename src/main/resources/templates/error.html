@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!-- Tell the browser to be responsive to screen width -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <!-- Favicon icon -->
+    <link rel="icon" type="image/png" sizes="16x16" href="/dashboard/assets/images/favicon.png">
+    <title>Error page</title>
+    <!-- Bootstrap Core CSS -->
+    <link href="/dashboard/assets/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Custom CSS -->
+    <link href="/dashboard/html/css/style.css" rel="stylesheet">
+    <!-- You can change the theme colors from here -->
+    <link href="/dashboard/html/css/colors/blue.css" id="theme" rel="stylesheet">
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+</head>
+
+<body class="fix-header card-no-border">
+
+<div class="container">
+    <div class="row">
+        <div class="missing-data col-12 col-md-10 m-auto">
+            <div class="error-box">
+                <div class="error-body text-center">
+                    <div class="row text-center">
+                        <div class="col-md-6">
+                            <div th:replace="backoffice/fragments/svg :: svg"></div>
+                        </div>
+                        <div class="col-md-6 align-self-center">
+                            <h1 class="text-danger">404</h1>
+                            <h6>Търсите страница, която не съществува!</h6>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="/dashboard/assets/plugins/jquery/jquery.min.js"></script>
+<!-- Bootstrap tether Core JavaScript -->
+<script src="/dashboard/assets/plugins/bootstrap/js/tether.min.js"></script>
+<script src="/dashboard/assets/plugins/bootstrap/js/bootstrap.min.js"></script>
+<!--Wave Effects -->
+<script src="/dashboard/html/js/waves.js"></script>
+</body>
+
+</html>

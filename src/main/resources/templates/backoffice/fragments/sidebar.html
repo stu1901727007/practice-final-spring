@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>Header</title>
+</head>
+
+<body>
+
+<div th:fragment="sidebar">
+    <!-- ============================================================== -->
+    <!-- Left Sidebar - style you can find in sidebar.scss  -->
+    <!-- ============================================================== -->
+    <aside class="left-sidebar">
+        <!-- Sidebar scroll-->
+        <div class="scroll-sidebar">
+            <!-- Sidebar navigation-->
+            <nav class="sidebar-nav">
+                <ul id="sidebarnav">
+                    <li><a class="waves-effect waves-dark" href="/bo/dashboard" aria-expanded="false"><i
+                            class="mdi mdi-gauge mr-1"></i><span class="hide-menu">Начало</span></a>
+                    </li>
+                    <li><a class="waves-effect waves-dark" href="/bo/agency" aria-expanded="false"><i
+                            class="fas fa-rocket mr-1"></i><span class="hide-menu">Агенции</span></a>
+                    </li>
+                    <li><a class="waves-effect waves-dark" href="/bo/library" aria-expanded="false"><i
+                            class="fas fa-photo-video mr-1"></i><span class="hide-menu">Библиотека</span></a>
+                    </li>
+<!--                    <li><a class="waves-effect waves-dark" href="/bo/users" aria-expanded="false"><i-->
+<!--                            class="fas fa-users-cog mr-1"></i><span class="hide-menu">Потребители</span></a>-->
+<!--                    </li>-->
+                </ul>
+            </nav>
+            <!-- End Sidebar navigation -->
+        </div>
+        <!-- End Sidebar scroll-->
+    </aside>
+</div>
+
+</body>
+
+</html>

@@ -1,0 +1,28 @@
+version: '3'
+services:
+
+  #h2 Service
+  app_db:
+    image: h2-docker_app_db:latest
+    #build: ./
+    container_name: h2_db
+    restart: unless-stopped
+    tty: true
+    ports:
+      - "9092:9092"
+      - "8082:8082"
+    volumes:
+      #- dbdata:/usr/lib/h2
+      - ./:/usr/lib/h2
+    networks:
+      - j-network
+
+#Docker Networks
+networks:
+  j-network:
+    driver: bridge
+
+#Volumes
+#volumes:
+#  dbdata:
+#    driver: local

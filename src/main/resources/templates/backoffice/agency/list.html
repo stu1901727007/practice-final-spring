@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorator="backoffice/layout/layout">
+
+<head>
+</head>
+
+<body>
+<!-- ============================================================== -->
+<!-- Container fluid  -->
+<!-- ============================================================== -->
+<div class="container-fluid" layout:fragment="content">
+
+    <div class="row page-titles">
+        <div class="col-md-5 col-8 align-self-center">
+            <h3 class="text-themecolor m-b-0 m-t-0">Агенции</h3>
+        </div>
+    </div>
+
+    <div class="row">
+        <!-- column -->
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-block">
+
+                    <div class="row m-0">
+                        <div class="col-6 p-0">
+                            <h4 class="card-title">Всички агенции</h4>
+                        </div>
+                        <div class="col-6 p-0 text-right">
+                            <a href="/bo/agency/create" class="btn btn-primary">Добави</a>
+                        </div>
+                    </div>
+
+                    <div class="table-responsive mt-2">
+                        <table class="table">
+                            <thead>
+                            <tr>
+                                <th>Найменование</th>
+                                <th th:width="100">Операция</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <th:block th:each="agency : ${agencies}">
+                                <tr>
+                                    <td th:text=${agency.name}>
+                                    <td class="text-center">
+                                    <a href="#" th:href="@{/bo/agency/__${agency.id}__/edit}"/>
+                                    <i class="fas fa-edit"></i></a></td>
+                                </tr>
+                            </th:block>
+                            <tr th:if="${#lists.isEmpty(agencies)}">
+                                <td th:colspan="2">
+                                    <div class="alert alert-info text-center">Няма записи!</div>
+                                </td>
+                            </tr>
+
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Row -->
+    <!-- ============================================================== -->
+    <!-- End PAge Content -->
+    <!-- ============================================================== -->
+</div>
+<!-- ============================================================== -->
+<!-- End Container fluid  -->
+<!-- ============================================================== -->
+
+</body>
+
+</html>

@@ -1,0 +1,8 @@
+{
+    "/src/main/resources/static/webapp/assets/css/app.css": "/src/main/resources/static/webapp/assets/css/app.css",
+    "/src/main/resources/static/auth/css/style.css": "/src/main/resources/static/auth/css/style.css",
+    "/src/main/resources/static/dashboard/html/css/style.css": "/src/main/resources/static/dashboard/html/css/style.css",
+    "/src/main/resources/static/webapp/assets/css/vendor.css": "/src/main/resources/static/webapp/assets/css/vendor.css",
+    "/src/main/resources/static/webapp/js/vendors.js": "/src/main/resources/static/webapp/js/vendors.js",
+    "/src/main/resources/static/webapp/js/app.js": "/src/main/resources/static/webapp/js/app.js"
+}

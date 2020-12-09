@@ -1,0 +1,123 @@
+<!--
+  ~ Copyright (c) 2020.
+  ~ @author Vitali Atias
+  -->
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorator="backoffice/layout/layout">
+
+<head>
+</head>
+
+<body>
+
+<!-- ============================================================== -->
+<!-- Container fluid  -->
+<!-- ============================================================== -->
+<div class="container-fluid" layout:fragment="content">
+    <!-- ============================================================== -->
+    <!-- Bread crumb and right sidebar toggle -->
+    <!-- ============================================================== -->
+    <div class="row page-titles">
+        <div class="col-md-5 col-8 align-self-center">
+            <h3 class="text-themecolor m-b-0 m-t-0">Профил</h3>
+        </div>
+    </div>
+
+    <form action="#" method="POST" class="form-horizontal form-material" th:object="${userFormData}">
+        <!-- Row -->
+        <div class="row">
+            <div class="col-md-12" th:if="${#fields.hasErrors('${userFormData.*}')}">
+                <div class="alert alert-danger">Възникна проблем!</div>
+            </div>
+
+            <div class="col-md-12" th:if="${message}">
+                <div th:text="${message}" th:class="${'alert ' + alertClass}"/>
+            </div>
+
+            <!-- Column -->
+            <div class="col-md-6">
+                <div class="card">
+                    <div class="card-block">
+
+                        <div class="form-group">
+                            <label for="firstName" class="col-md-12">Име</label>
+                            <div class="col-md-12">
+                                <input type="text" th:field="*{firstName}" class="form-control form-control-line"
+                                       name="firstName" id="firstName">
+                            </div>
+                            <small class="text-danger-padded" th:if="${#fields.hasErrors('firstName')}"
+                                   th:errors="*{firstName}"></small>
+                        </div>
+                        <div class="form-group">
+                            <label for="lastName" class="col-md-12">Фамилия</label>
+                            <div class="col-md-12">
+                                <input type="text" th:field="*{lastName}" class="form-control form-control-line"
+                                       name="lastName" id="lastName">
+                            </div>
+                            <small class="text-danger-padded" th:if="${#fields.hasErrors('lastName')}"
+                                   th:errors="*{lastName}"></small>
+                        </div>
+                        <div class="form-group">
+                            <label for="mobileNumber" class="col-md-12">Телефон</label>
+                            <div class="col-md-12">
+                                <input type="text" th:field="*{mobileNumber}" class="form-control form-control-line"
+                                       name="mobileNumber" id="mobileNumber">
+                            </div>
+                            <small class="text-danger-padded" th:if="${#fields.hasErrors('mobileNumber')}"
+                                   th:errors="*{mobileNumber}"></small>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            <!-- Column -->
+            <!-- Column -->
+            <div class="col-md-6">
+                <div class="card">
+                    <div class="card-block">
+
+                            <div class="form-group">
+                                <label class="col-md-12">Имейл</label>
+                                <div class="col-md-12">
+                                    <input type="text" th:field="*{email}"
+                                           class="form-control form-control-line" readonly="readonly">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="password" class="col-md-12">Парола</label>
+                                <div class="col-md-12">
+                                    <input type="password" th:field="*{password}"
+                                           class="form-control form-control-line" name="password" id="password">
+                                </div>
+                                <small class="text-danger-padded" th:if="${#fields.hasErrors('password')}"
+                                       th:errors="*{password}"></small>
+                            </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Column -->
+
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-block">
+                        <div class="mb-0 row">
+                            <div class="col-sm-12 text-right">
+                                <button class="btn btn-primary btnSubmit" type="submit">Запази</button>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </form>
+</div>
+<!-- ============================================================== -->
+<!-- End Container fluid  -->
+<!-- ============================================================== -->
+</body>
+
+</html>

@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorator="backoffice/layout/layout">
+
+<head>
+</head>
+
+<body>
+<!-- ============================================================== -->
+<!-- Container fluid  -->
+<!-- ============================================================== -->
+<div class="container-fluid" layout:fragment="content">
+    <!-- ============================================================== -->
+    <!-- Bread crumb and right sidebar toggle -->
+    <!-- ============================================================== -->
+    <div class="row page-titles">
+        <div class="col-md-5 col-8 align-self-center">
+            <h3 class="text-themecolor m-b-0 m-t-0">Библиотека</h3>
+        </div>
+    </div>
+    <!-- ============================================================== -->
+    <!-- End Bread crumb and right sidebar toggle -->
+    <!-- ============================================================== -->
+    <!-- ============================================================== -->
+    <!-- Start Page Content -->
+    <!-- ============================================================== -->
+    <!-- Row -->
+    <div class="row">
+        <!-- column -->
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-block">
+
+
+                    <div class="col-md-12 mb-2" th:if="${message}">
+                        <div th:text="${message}" th:class="${'alert ' + alertClass}"/>
+                    </div>
+
+                    <div class="row m-0">
+                        <div class="col-6 p-0">
+                            <h4 class="card-title">Всички записи</h4>
+                        </div>
+                        <div class="col-6 p-0 text-right">
+                            <a href="/bo/library/create" class="btn btn-primary">Добави</a>
+                        </div>
+                    </div>
+
+                    <div class="table-responsive mt-2">
+                        <table class="table">
+                            <thead>
+                            <tr>
+                                <th>Заглавие</th>
+                                <th>Тип</th>
+                                <th th:width="100">Операция</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <th:block th:each="library : ${libraries}">
+                                <tr>
+                                    <td th:text=${library.title}>
+                                    <td th:text=${library.type}>
+                                    <td class="text-center">
+                                        <a href="#" th:href="@{/bo/library/__${library.id}__/edit}"/>
+                                        <i class="fas fa-edit"></i></a></td>
+                                </tr>
+                            </th:block>
+                            <tr th:if="${#lists.isEmpty(libraries)}">
+                                <td th:colspan="3">
+                                    <div class="alert alert-info text-center">Няма записи!</div>
+                                </td>
+                            </tr>
+
+                            </tbody>
+                        </table>
+                    </div>
+
+
+                    <!-- libraries pagination -->
+                    <nav aria-label="Pagination" th:if="${libraries.totalPages gt 0}">
+                        <ul class="pagination justify-content-center font-weight-medium">
+                            <li class="page-item" th:classappend="${libraries.number eq 0} ? 'disabled'">
+                                <a class="page-link svg-icon"
+                                   th:href="@{/bo/library?page={id}(id=${libraries.number lt 2 ? 1 : libraries.number})}"
+                                   aria-label="Previous"
+                                   title="Previous Page" rel="tooltip">
+                                    <i class="fas fa-arrow-left"></i>
+                                </a>
+                            </li>
+                            <li class="page-item" th:classappend="${i eq libraries.number + 1} ? 'active'"
+                                th:each="i : ${#numbers.sequence( libraries.number + 1, libraries.totalPages > 10 + libraries.number ? libraries.number + 10 : libraries.totalPages, 1)}">
+                                <a class="page-link" th:href="@{/bo/library?page={id}(id=${i})}" th:text="${i}"
+                                   th:title="${'Page '+ i}"
+                                   rel="tooltip"></a>
+                            </li>
+                            <li class="page-item disabled" th:if="${libraries.number + 10 < libraries.totalPages}">
+                                <a class="page-link svg-icon" href="#">
+                                    <span data-feather="more-horizontal" width="20" height="20"></span>
+                                </a>
+                            </li>
+                            <li class="page-item"
+                                th:classappend="${libraries.number + 1 eq libraries.totalPages} ? 'disabled'">
+                                <a class="page-link svg-icon"
+                                   th:href="@{/bo/library?page={id}(id=${libraries.number + 2})}"
+                                   aria-label="Next"
+                                   title="Next Page" rel="tooltip">
+                                    <i class="fas fa-arrow-right"></i>
+                                </a>
+                            </li>
+                        </ul>
+                    </nav>
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Row -->
+    <!-- ============================================================== -->
+    <!-- End PAge Content -->
+    <!-- ============================================================== -->
+</div>
+<!-- ============================================================== -->
+<!-- End Container fluid  -->
+<!-- ============================================================== -->
+
+</body>
+
+</html>

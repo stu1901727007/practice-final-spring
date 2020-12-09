@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorator="backoffice/layout/layout">
+<head>
+</head>
+<body>
+<div class="container-fluid" layout:fragment="content">
+    <div class="row page-titles">
+        <div class="col-md-5 col-8 align-self-center">
+            <h3 class="text-themecolor m-b-0 m-t-0">Библиотека</h3>
+        </div>
+    </div>
+
+    <form method="POST" class="form-horizontal form-material w-100" enctype="multipart/form-data"
+          th:object="${libraryFormData}">
+        <div class="row">
+            <div class="col-md-12" th:if="${#fields.hasErrors('${libraryFormData.*}')}">
+                <div class="alert alert-danger">Възникна проблем!</div>
+            </div>
+
+            <div class="col-md-12" th:if="${message}">
+                <div th:text="${message}" th:class="${'alert ' + alertClass}"/>
+            </div>
+
+            <!-- Column -->
+            <div class="col-md-7">
+                <div class="card">
+                    <div class="card-block">
+
+
+                        <div class=" form-group">
+                            <label for="libraryTitle" class="col-md-12">Наименование</label>
+                            <div class="col-md-12">
+                                <input type="text" th:field="*{libraryTitle}" class="form-control form-control-line"
+                                       name="libraryTitle" id="libraryTitle">
+                            </div>
+                            <small class="text-danger-padded" th:if="${#fields.hasErrors('libraryTitle')}"
+                                   th:errors="*{libraryTitle}"></small>
+                        </div>
+                        <div class="form-group">
+                            <label for="libraryResume" class="col-md-12">Резюме</label>
+                            <div class="col-md-12">
+                                <textarea th:field="*{libraryResume}" rows="3" class="form-control form-control-line"
+                                          name="libraryResume" id="libraryResume"></textarea>
+                            </div>
+                            <small class="text-danger-padded" th:if="${#fields.hasErrors('libraryText')}"
+                                   th:errors="*{libraryText}"></small>
+                        </div>
+                        <div class="form-group">
+                            <label for="libraryText" class="col-md-12">Повече информация</label>
+                            <div class="col-md-12">
+                                <textarea th:field="*{libraryText}" rows="10" class="form-control form-control-line"
+                                          name="libraryText" id="libraryText"></textarea>
+                            </div>
+                            <small class="text-danger-padded" th:if="${#fields.hasErrors('libraryText')}"
+                                   th:errors="*{libraryText}"></small>
+                        </div>
+
+                        <div class=" form-group">
+                            <label for="libraryPublicationDate" class="col-md-12">Дата</label>
+                            <div class="col-md-12">
+                                <input type="text" th:field="*{libraryPublicationDate}" class="form-control form-control-line datepicker-autoclose text-right"
+                                       name="libraryPublicationDate" id="libraryPublicationDate">
+                            </div>
+                            <small class="text-danger-padded" th:if="${#fields.hasErrors('libraryPublicationDate')}"
+                                   th:errors="*{libraryPublicationDate}"></small>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="libraryAgency" class="col-md-12">Агенция</label>
+                            <div class="col-md-12">
+                                <select class="form-control" th:field="*{libraryAgency}" id="libraryAgency"
+                                        name="libraryAgency">
+                                    <option value="">--Select--</option>
+                                    <option th:each="agency : ${agencies}"
+                                            th:value="${agency.id}"
+                                            th:text="${agency.name}"
+                                            th:selected="${agency.id == libraryFormData.getLibraryAgency()}">
+                                    </option>
+                                </select>
+                            </div>
+                            <small class="text-danger-padded" th:if="${#fields.hasErrors('libraryAgency')}"
+                                   th:errors="*{libraryAgency}"></small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-5">
+                <div class="card">
+                    <div class="card-block">
+
+                        <div class="form-group">
+                            <label for="libraryText" class="col-md-12">Тип</label>
+                            <div class="col-md-12">
+                                <select class="form-control" th:field="*{libraryType}" id="libraryType"
+                                        name="libraryType">
+                                    <option th:each="entry : ${hashTypes.entrySet()}" th:value="${entry.key}"
+                                            th:text="${entry.value}">
+                                        Value
+                                    </option>
+                                </select>
+                            </div>
+                            <small class="text-danger-padded" th:if="${#fields.hasErrors('libraryType')}"
+                                   th:errors="*{libraryType}"></small>
+                        </div>
+
+
+                        <div class="form-group">
+                            <label for="libraryText" class="col-md-12">Изображение</label>
+                            <div class="col-md-12">
+                                <input type="file" class="mt-2" name="image" accept="image/png, image/jpeg"/>
+
+                                <img class="img-thumbnail mt-2" th:src="*{photosImagePath}" />
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="libraryEmbed" class="col-md-12">Embed видео или аудио</label>
+                            <div class="col-md-12">
+                                <textarea th:field="*{libraryEmbed}" rows="5" class="form-control form-control-line"
+                                          name="libraryEmbed" id="libraryEmbed"></textarea>
+                            </div>
+                            <small class="text-danger-padded" th:if="${#fields.hasErrors('libraryEmbed')}"
+                                   th:errors="*{libraryEmbed}"></small>
+                        </div>
+
+                        <div class=" form-group">
+                            <label for="libraryPhotographer" class="col-md-12">Кредити</label>
+                            <div class="col-md-12">
+                                <input type="text" th:field="*{libraryPhotographer}"
+                                       class="form-control form-control-line"
+                                       name="libraryPhotographer" id="libraryPhotographer">
+                            </div>
+                            <small class="text-danger-padded" th:if="${#fields.hasErrors('libraryPhotographer')}"
+                                   th:errors="*{libraryPhotographer}"></small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-block">
+                        <div class="mb-0 row">
+                            <input type="hidden" th:field="*{libraryId}" id="libraryId">
+                            <input type="hidden" name="_method" value="POST">
+
+                            <div class="col-sm-6">
+                                <a th:if="${libraryFormData.getLibraryId()}" class="btn btn-danger text-white btn-delete-record">Премахни</a>
+                            </div>
+
+                            <div class="col-sm-6 text-right">
+                                <button
+                                        th:with="text=${libraryId} ? 'Добави' : 'Запази'"
+                                        class="btn btn-primary btnSubmit" type="submit" th:text="${text}">Добави
+                                </button>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </form>
+</div>
+
+</div>
+</body>
+
+</html>
