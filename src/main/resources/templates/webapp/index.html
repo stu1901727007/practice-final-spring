@@ -12,6 +12,11 @@
 </head>
 <body>
 
+<script th:inline="javascript">
+    /*<![CDATA[*/
+    var yearsRange = {min:/*[[${yearsRange.get("min")}]]*/, max: /*[[${yearsRange.get("max")}]]*/};
+    /*]]>*/
+</script>
 
 <script src="/webapp/js/vendors.js"></script>
 <script src="/webapp/js/templates/hbs.precompile.js"></script>

@@ -1,9 +1,7 @@
 package uni.finalproject.http.controllers.backoffice;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -15,7 +13,6 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import uni.finalproject.http.requests.backoffice.LibraryFormRequest;
 import uni.finalproject.models.image.Library;
-import uni.finalproject.models.user.User;
 import uni.finalproject.repository.image.AgencyRepository;
 import uni.finalproject.repository.image.LibraryRepository;
 import uni.finalproject.service.LibraryService;
@@ -23,6 +20,7 @@ import uni.finalproject.util.DateUtils;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Optional;

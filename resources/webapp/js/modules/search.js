@@ -162,15 +162,15 @@ class Search {
     initAdvanced() {
         let d = new Date();
 
-        $("#ranges").html("1920г. - " + d.getFullYear() + "г.");
-        $("#years-from").val(1920);
-        $("#years-to").val(d.getFullYear());
+        $("#ranges").html(yearsRange.min + "г. - " + yearsRange.max + "г.");
+        $("#years-from").val(yearsRange.min);
+        $("#years-to").val(yearsRange.max);
 
         $("#year-range").slider({
             range: true,
-            min: 1920,
-            max: d.getFullYear(),
-            values: [1920, d.getFullYear()],
+            min: yearsRange.min,
+            max: yearsRange.max,
+            values: [yearsRange.min, yearsRange.max],
             slide: function (event, ui) {
                 $("#years-from").val(ui.values[0]);
                 $("#years-to").val(ui.values[1]);

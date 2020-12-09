@@ -3,21 +3,23 @@ package uni.finalproject.http.controllers.webapp;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
-import uni.finalproject.repository.user.RoleRepository;
-import uni.finalproject.repository.user.UserRepository;
+import uni.finalproject.repository.image.LibraryRepository;
+
+import java.util.Map;
 
 
 @Controller
 public class IndexController {
 
     @Autowired
-    RoleRepository roleRepository;
-
-    @Autowired
-    UserRepository userRepository;
+    private LibraryRepository libraryRepo;
 
     @GetMapping("/")
-    public String home() {
+    public String home(Map<String, Object> model) {
+
+        Map<String, Integer> yearsRange = libraryRepo.getRangeYear();
+
+        model.put("yearsRange", yearsRange);
 
         return "webapp/index";
     }
