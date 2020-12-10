@@ -1,6 +1,5 @@
 package uni.finalproject.http.controllers.backoffice;
 
-import org.apache.commons.validator.routines.EmailValidator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -98,8 +97,6 @@ public class AuhController {
                                Map<String, Object> model) {
 
         if (!bindingResult.hasErrors()) {
-
-            EmailValidator validator = EmailValidator.getInstance();
 
             Authentication auth = SecurityContextHolder.getContext().getAuthentication();
             User user = userService.findUserByEmail(auth.getName());

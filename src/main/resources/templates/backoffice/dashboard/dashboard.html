@@ -36,6 +36,9 @@
                             <tr>
                                 <th>Търсене</th>
                                 <th>Типове</th>
+                                <th>От</th>
+                                <th>До</th>
+                                <th>Агенция</th>
                             </tr>
                             </thead>
                             <tbody>
@@ -43,6 +46,9 @@
                                 <tr>
                                     <td th:text=${row.q}>
                                     <td th:text=${row.type}>
+                                    <td th:with="text=${row.yearStart} ? ${row.yearStart} : '--'" th:text=${text}>
+                                    <td th:with="text=${row.yearEnd} ? ${row.yearEnd} : '--'" th:text=${text}>
+                                    <td th:with="text=${row.agency} ? ${row.agency.name} : '--'" th:text=${text}>
                                 </tr>
                             </th:block>
                             <tr th:if="${#lists.isEmpty(history)}">

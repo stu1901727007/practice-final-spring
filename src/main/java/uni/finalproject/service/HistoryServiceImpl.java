@@ -1,22 +1,14 @@
 package uni.finalproject.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Component;
-import org.springframework.util.StringUtils;
-import org.springframework.web.multipart.MultipartFile;
-import uni.finalproject.http.requests.backoffice.LibraryFormRequest;
+import uni.finalproject.models.image.Agency;
 import uni.finalproject.models.image.History;
-import uni.finalproject.models.image.Library;
-import uni.finalproject.models.user.User;
+import uni.finalproject.repository.image.AgencyRepository;
 import uni.finalproject.repository.image.HistoryRepository;
-import uni.finalproject.repository.image.LibraryRepository;
-import uni.finalproject.util.DateUtils;
-import uni.finalproject.util.FileUploadUtil;
 
-import java.io.IOException;
 import java.util.Date;
+import java.util.Optional;
 
 @Component
 public class HistoryServiceImpl implements HistoryService {
@@ -24,19 +16,43 @@ public class HistoryServiceImpl implements HistoryService {
     @Autowired
     private HistoryRepository historyRepository;
 
+    @Autowired
+    private AgencyRepository agencyRepository;
+
     /**
      *
      * @param q
      * @param type
-     * @param agency
+     * @param center
      * @param yearStart
      * @param yearEnd
      * @return
      */
-    public History add(String q, String type, int agency, int yearStart, int yearEnd) {
+    public History add(String q, String type, int center, int yearStart, int yearEnd) {
 
         History history = new History();
-        history.setSearchDate(new Date()).setQ(q).setType(type).setYearStart(yearStart).setYearEnd(yearEnd);
+
+        history.setSearchDate(new Date()).setQ(q)
+                .setType(type);
+
+        if( center > 0 ) {
+            Optional<Agency> agency = agencyRepository.findById(Long.valueOf(center));
+
+            if( agency.isPresent() )
+            {
+                history.setAgency(agency.get());
+            }
+        }
+
+        if( yearStart > 0 )
+        {
+            history.setYearStart(yearStart);
+        }
+
+        if( yearEnd > 0 )
+        {
+            history.setYearEnd(yearEnd);
+        }
 
         return historyRepository.saveAndFlush(history);
     }

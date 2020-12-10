@@ -22,7 +22,7 @@ class Search {
 
         let that = this;
 
-        app.api.callAgency(that.setAgency);
+        app.api.callAgency(that.setAgency.bind(this));
 
         /**
          * Превенция за изпращане на формата
@@ -135,6 +135,9 @@ class Search {
      * @returns {Search}
      */
     showAdvanceFilter() {
+
+        alert('da');
+
 
         console.log( this.nasaCenters );
 

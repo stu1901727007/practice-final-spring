@@ -1,12 +1,15 @@
 package uni.finalproject.repository.specification;
 
 import org.springframework.data.jpa.domain.Specification;
+import uni.finalproject.models.image.Agency;
 import uni.finalproject.models.image.Library;
+import uni.finalproject.repository.image.AgencyRepository;
 
 import java.text.SimpleDateFormat;
 import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
+import java.util.Optional;
 
 public class LibrarySpecification {
 
@@ -40,16 +43,23 @@ public class LibrarySpecification {
 
     /**
      *
-     * @param agency
+     * @param center
      * @return
      */
-    public static Specification<Library> withАgency(int agency) {
-        if (agency <= 0) {
-            return null;
-        } else {
+    public static Specification<Library> withАgency(AgencyRepository agencyRepository, int center) {
+        if (center > 0) {
 
-            return (root, query, cb) -> cb.equal(root.get("agencyId"), agency);
+            try {
+                Optional<Agency> agency = agencyRepository.findById(Long.valueOf(center));
+
+                if (agency.isPresent()) {
+                    return (root, query, cb) -> cb.equal(root.get("agency"), agency.get());
+                }
+            }catch(Exception e){}
+
         }
+
+        return null;
     }
 
     /**

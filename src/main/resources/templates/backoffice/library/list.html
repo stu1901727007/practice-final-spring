@@ -42,6 +42,7 @@
                             <tr>
                                 <th>Заглавие</th>
                                 <th>Тип</th>
+                                <th>Агенция</th>
                                 <th th:width="100">Операция</th>
                             </tr>
                             </thead>
@@ -49,7 +50,8 @@
                             <th:block th:each="library : ${libraries}">
                                 <tr>
                                     <td th:text=${library.title}>
-                                    <td th:text=${library.type}>
+                                    <td th:text=${mapTypes.get(library.type)}>
+                                    <td th:with="text=${library.agency} ? ${library.agency.name} : '--'" th:text=${text}>
                                     <td class="text-center">
                                         <a href="#" th:href="@{/bo/library/__${library.id}__/edit}"/>
                                         <i class="fas fa-edit"></i></a></td>

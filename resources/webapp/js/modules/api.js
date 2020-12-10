@@ -108,14 +108,12 @@ class Api {
         }).done(function (result) {
 
             let nasaCenters = {};
-
             if( result.list.length > 0 )
             {
                 for(let x in result.list)
                 {
                     nasaCenters[ result.list[x].id ] = result.list[x].name;
                 }
-
             }
 
             callback(nasaCenters);

@@ -155,15 +155,13 @@ public class ApiController {
             @RequestParam(defaultValue = "0") int year_end
     ) {
 
-        try {
+        //try {
             Pageable paging = PageRequest.of(page, size);
             ArrayList<Library> libraries = (ArrayList<Library>) libraryRepository.findAll(
-                    where(
-                            withTitle(q)).or(withText(q)).
+                    where(withTitle(q)).or(withText(q)).
                             and(withType(media_type)).
                             and(withYear(year_start, year_end)).
-                            and(withАgency(center)
-                            )
+                            and(withАgency(agencyRepository, center))
             );
 
             Map<String, Object> response = new HashMap<>();
@@ -176,8 +174,8 @@ public class ApiController {
 
             return new ResponseEntity<>(response, HttpStatus.OK);
 
-        } catch (Exception e) {
-            return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
-        }
+//        } catch (Exception e) {
+//            return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
+//        }
     }
 }

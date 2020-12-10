@@ -73,6 +73,7 @@ public class LibraryController {
 
         ModelAndView modelAndView = new ModelAndView("backoffice/library/list");
         modelAndView.addObject("libraries", libraryRepo.findAllByOrderByTitleAsc(PageRequest.of(page, size)));
+        modelAndView.addObject("mapTypes", TYPES);
         return modelAndView;
     }
 
