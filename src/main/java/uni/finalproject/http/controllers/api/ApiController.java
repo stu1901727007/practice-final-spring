@@ -34,6 +34,12 @@ public class ApiController {
 
     Pageable defaultPagination = PageRequest.of(0, 15, Sort.by("name"));
 
+    /**
+     *
+     * @param page
+     * @param size
+     * @return
+     */
     @GetMapping("/agency")
     public ResponseEntity<Map<String, Object>> getAllAgencies(
             @RequestParam(defaultValue = "0") int page,
@@ -57,6 +63,12 @@ public class ApiController {
         }
     }
 
+    /**
+     *
+     * @param page
+     * @param size
+     * @return
+     */
     @GetMapping("/library")
     public ResponseEntity<Map<String, Object>> getAllMediaRecords(
             @RequestParam(defaultValue = "0") int page,
@@ -82,6 +94,11 @@ public class ApiController {
         }
     }
 
+    /**
+     *
+     * @param libraryid
+     * @return
+     */
     @GetMapping("/library/{libraryid}")
     public Library showLibrary(@PathVariable(value = "libraryid") int libraryid) {
 
@@ -96,6 +113,10 @@ public class ApiController {
         return new Library();
     }
 
+    /**
+     *
+     * @return
+     */
     @GetMapping("/library/top")
     public ResponseEntity<Map<String, Object>> showLibrary() {
 
@@ -110,7 +131,19 @@ public class ApiController {
         return new ResponseEntity<>(response, HttpStatus.OK);
     }
 
-    //search?page=1&q=1&media_type=image,video,audio&center=&year_start=1920&year_end=2020
+    /**
+     *
+     * search?page=1&q=1&media_type=image,video,audio&center=&year_start=1920&year_end=2020
+     *
+     * @param page
+     * @param size
+     * @param q
+     * @param media_type
+     * @param center
+     * @param year_start
+     * @param year_end
+     * @return
+     */
     @GetMapping("/search")
     public ResponseEntity<Map<String, Object>> search(
             @RequestParam(defaultValue = "0") int page,
