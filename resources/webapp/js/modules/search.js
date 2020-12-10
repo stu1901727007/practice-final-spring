@@ -136,11 +136,6 @@ class Search {
      */
     showAdvanceFilter() {
 
-        alert('da');
-
-
-        console.log( this.nasaCenters );
-
         $('.filter-wrapper form').html(Handlebars.templates.extendedFilter({'centers': this.nasaCenters}));
 
         this.initAdvanced();

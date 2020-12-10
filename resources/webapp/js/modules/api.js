@@ -146,8 +146,6 @@ class Api {
                 'total_hits': result.totalItems
             };
 
-            console.log( data );
-
             callback(data);
 
         }).fail(function () {
