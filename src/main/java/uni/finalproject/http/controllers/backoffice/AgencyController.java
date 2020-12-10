@@ -12,6 +12,7 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import uni.finalproject.http.requests.backoffice.AgencyFormRequest;
 import uni.finalproject.models.image.Agency;
+import uni.finalproject.models.image.Library;
 import uni.finalproject.models.user.User;
 import uni.finalproject.repository.image.AgencyRepository;
 import uni.finalproject.service.AgencyService;
@@ -147,5 +148,34 @@ public class AgencyController {
 
         model.put("agencyFormData", agencyFormRequest);
         return VIEWS_CREATE_OR_UPDATE_FORM;
+    }
+
+    /**
+     *
+     * @param agencyid
+     * @param redirectAttributes
+     * @return
+     */
+    @DeleteMapping(value = "/agency/{agencyid}/edit")
+    public String libraryUpdate(@PathVariable("agencyid") Long agencyid, RedirectAttributes redirectAttributes) {
+
+        Optional<Agency> agency = agencyRepo.findById(agencyid);
+
+        if (agency.isPresent()) {
+
+            Agency rsAgency = agency.get();
+
+            agencyService.deleteAgency(rsAgency);
+
+            redirectAttributes.addFlashAttribute("message", "Успешно изтрихте " + rsAgency.getName() +"!");
+            redirectAttributes.addFlashAttribute("alertClass", "alert-success");
+        }
+        else
+        {
+            redirectAttributes.addFlashAttribute("message", "Възникна проблем при изтриваме на запис!");
+            redirectAttributes.addFlashAttribute("alertClass", "alert-danger");
+        }
+
+        return "redirect:/bo/agency";
     }
 }

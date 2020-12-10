@@ -24,6 +24,11 @@
                 <div class="card-block">
 
                     <div class="row m-0">
+
+                        <div class="col-md-12 mb-2 p-0" th:if="${message}">
+                            <div th:text="${message}" th:class="${'alert ' + alertClass}"/>
+                        </div>
+
                         <div class="col-6 p-0">
                             <h4 class="card-title">Всички агенции</h4>
                         </div>

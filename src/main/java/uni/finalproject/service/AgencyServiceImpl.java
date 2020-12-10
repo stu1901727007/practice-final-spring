@@ -80,7 +80,7 @@ public class AgencyServiceImpl implements AgencyService {
      * @param agency
      * @return
      */
-    public Boolean deleteLibrary(Agency agency) {
+    public Boolean deleteAgency(Agency agency) {
 
         agency.setDeleted(true);
         agencyRepository.save(agency);

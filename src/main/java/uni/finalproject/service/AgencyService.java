@@ -25,5 +25,5 @@ public interface AgencyService {
      * @param agency
      * @return
      */
-    Boolean deleteLibrary(Agency agency);
+    Boolean deleteAgency(Agency agency);
 }
